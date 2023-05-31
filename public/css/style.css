@@ -1,5 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
+
+
+:root {
+    font-size: 16px;
+    --main-color: crimson;
+    --text-color: #f8f8f8; /* Change this to your desired color */
+    --heading-font: 'Roboto', sans-serif;
+    --body-font: 'Open Sans', sans-serif;
+}
+
+
 body {
-    background-color: #ffdcee;
-    color: #f1c232;
+  margin: 0;
+  padding: 0;
+  font-family: var(--body-font);
+  background: linear-gradient(to bottom, #ff7f7f, #ffb3b3); 
+  color: var(--text-color);
+}
+
+
+.custom-navbar {
+    font-size: 1.25rem; 
     
 }
+.custom-navbar-bg {
+    background-color: #800000; /* dark red */
+}
+
+
+.custom-navbar-bg .navbar-brand,
+.custom-navbar-bg .navbar-nav .nav-link,
+.custom-navbar-bg .btn {
+    color: #f8f8f8; /* off-white color */
+}
+
+
+
+
+.container {
+  display: grid;
+  place-items: center;
+  height: 80vh; 
+
+}
+
+  
+h2 {
+  font-family: var(--heading-font);
+  color: var(--main-color);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.form-input {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    width: 100%;
+    height: 2.5rem; 
+    font-size: 1.2rem; 
+    box-sizing: border-box;
+  }
+
+  .row {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 2rem;
+    width: 50%;
+    margin: 0 auto;
+    position: relative;
+    transform: translateX(32%); 
+}
+
+
+  @media (max-width: 768px) {
+    .row {
+      width: 80%;
+    }
+}
+
+
+  .form-group {
+    margin-bottom: 2rem; 
+  }
+  
+  .col-md-6 {
+    width: 70%; 
+    margin: 0 auto; 
+  }
+  
+  h5, h5 a {
+    line-height: 1.6; 
+    text-align: center; 
+  }
+  
+  
+.btn {
+  background-color: var(--main-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: darken(var(--main-color), 10%);
+}
+
+#error-message {
+  color: red;
+}
+
+footer {
+    transform: translateX(41%);
+}
+
+

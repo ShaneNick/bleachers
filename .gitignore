@@ -4,19 +4,6 @@ node_modules/
 # Environment variables
 .env
 
-# Logs
-logs/
-*.log
-
-# IDE and editor files
-.vscode/
-*.swp
-*.swo
-*.swn
-*.bak
-*.tmp
-*.sublime*
-*.idea/
 
 # OS generated files
 .DS_Store
