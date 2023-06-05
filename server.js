@@ -9,15 +9,17 @@ const mysql = require('mysql2/promise');
 const env = require('dotenv').config();
 const session = require('express-session');
 const sequelize = require('./config/connection');
+const { v4: uuidv4 } = require('uuid');
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: process.env.SESSION_SECRET = uuidv4(),
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false } // Set to true if using HTTPS
+  cookie: { secure: true } // Set to true if using HTTPS
 }));
 
 const exphbs = require('express-handlebars');
