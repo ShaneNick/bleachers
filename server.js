@@ -34,6 +34,14 @@ function isAuthenticated(req, res, next) {
     res.redirect('/login');
   }
 }
+// ...
+
+app.get('/', (req, res) => {
+  res.render('signup', { logged_in: req.session.nickname ? true : false });
+});
+
+// ...
+
 
 
 //handles user registration
