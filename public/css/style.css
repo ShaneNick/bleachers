@@ -1,50 +1,66 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
 
-
 :root {
     font-size: 16px;
     --main-color: crimson;
-    --text-color: #f8f8f8; /* Change this to your desired color */
+    --text-color: #f8f8f8; 
     --heading-font: 'Roboto', sans-serif;
     --body-font: 'Open Sans', sans-serif;
 }
 
-
 body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--body-font);
-  background: linear-gradient(to bottom, #ff7f7f, #ffb3b3); 
-  color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    font-family: var(--body-font);
+    background: linear-gradient(to bottom, #ff7f7f, #ffb3b3); 
+    color: var(--text-color);
 }
 
+.navbar-brand {
+    --bs-navbar-brand-color: white;
+}
 
 .custom-navbar {
     font-size: 1.25rem; 
-    
 }
+
 .custom-navbar-bg {
     background-color: #800000; /* dark red */
 }
 
-
-.custom-navbar-bg .navbar-brand,
-.custom-navbar-bg .navbar-nav .nav-link,
-.custom-navbar-bg .btn {
-    color: #f8f8f8; /* off-white color */
+.navbar-text a,
+.navbar-text a:focus,
+.navbar-text a:hover,
+nav.navbar.navbar-expand.bg-body-tertiary .navbar-text a {
+    color: white;
 }
 
+nav.navbar.navbar-expand.bg-body-tertiary {
+    background-color: #800000;
+}
 
+.custom-navbar-bg .navbar-brand a,
+.custom-navbar-bg .navbar-nav .nav-link,
+.custom-navbar-bg .btn {
+    color: #f8f8f8; 
+}
+
+.navbar-text {
+    color: white !important;
+}
+
+.navbar-expand .navbar-nav .nav-link {
+    color: white;
+}
 
 
 .container {
-  display: grid;
-  place-items: center;
-  height: 80vh; 
-
+    display: grid;
+    place-items: center;
+    height: 80vh; 
 }
 
-  
+
 h2 {
   font-family: var(--heading-font);
   color: var(--main-color);
@@ -54,6 +70,7 @@ label {
   display: block;
   margin-bottom: 0.5rem;
 }
+
 .form-input {
     margin-bottom: 1rem;
     padding: 0.5rem;
