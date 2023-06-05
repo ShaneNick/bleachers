@@ -27,7 +27,7 @@ const exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
-app.use(express.static(path.join(__dirname, 'Public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 function isAuthenticated(req, res, next) {
   if (req.session.nickname) {
