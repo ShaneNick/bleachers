@@ -17,7 +17,7 @@ const login = async (e) => {
     });
 
     if (response.ok) {
-      // If successful, redirect the browser to the chatrooms page
+      // If successful, redirect the browser to the rooms page
       document.location.replace('/chat');
     } else {
       console.log(response.statusText);

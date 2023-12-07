@@ -1,4 +1,5 @@
 const User = require('./models/users');
+const Room = require('./models/room');
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
@@ -16,10 +17,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(session({
-  secret: process.env.SESSION_SECRET = uuidv4(),
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: true } // Set to true if using HTTPS
+  cookie: { secure: false } // Set to true if using HTTPS
 }));
 
 const exphbs = require('express-handlebars');
@@ -36,14 +37,10 @@ function isAuthenticated(req, res, next) {
     res.redirect('/login');
   }
 }
-// ...
 
 app.get('/', (req, res) => {
   res.render('signup', { logged_in: req.session.nickname ? true : false });
 });
-
-// ...
-
 
 
 //handles user registration
@@ -85,7 +82,12 @@ app.get('/login', (req, res) => {
 
 // chat route
 app.get('/chat', isAuthenticated, (req, res) => {
-  res.render('rooms', { logged_in: true, name: req.session.nickname });
+  res.render('chatroom', { logged_in: true, name: req.session.nickname });
+});
+
+// chatroom route
+app.get('/chatRoomPage', isAuthenticated, (req, res) => {
+  res.render('chatRoomPage', { logged_in: true, name: req.session.nickname });
 });
 
 
@@ -107,8 +109,49 @@ app.post('/api/users/login', async (req, res) => {
   }
 });
 
+//Saves chat rooms to sql
+async function saveRoom(roomName){
+  try {
+      const newRoom = await Room.create({ name: roomName }); // Make sure the property matches your model definition
+      console.log('New room created:', newRoom.id);
+      return newRoom;
+  } catch (error) {
+      console.error('Error creating new room:', error);
+  }
+}
 
-//Chat functionality------------------------------------------------------------
+//Route for creating rooms
+// Route for creating rooms
+app.post('/api/createRoom', async (req, res) => {
+  try {
+    const { roomName } = req.body;
+
+    // Check if the room with the provided name already exists
+    const existingRoom = await Room.findOne({ where: { name: roomName } });
+
+    if (existingRoom) {
+      return res.status(409).json({ success: false, message: 'Room name already in use. Please choose another one.' });
+    }
+
+    // Create a new room using the Room model
+    const newRoom = await Room.create({ name: roomName });
+    res.json({ success: true, message: 'Room created successfully.', roomName: newRoom.name });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Failed to create room.' });
+  }
+});
+
+// Route for getting the rooms
+app.get('/api/rooms', async (req, res) => {
+  try {
+    const rooms = await Room.findAll();
+    res.json(rooms);
+  } catch (error) {
+    res.status(500).send('Error fetching rooms');
+  }
+});
+
 
 //Pulls nickname from db
 app.get("/api/getNickname/:userId", async (req, res) => {
@@ -142,7 +185,11 @@ const rooms = {}
 
 
 app.get('/chatroom/:roomName', isAuthenticated, (req, res) => {
-  res.render('partials/chatroom', { logged_in: true, name: req.session.nickname, roomName: req.params.roomName });
+  res.render('chat', { 
+    logged_in: true, 
+    name: req.session.nickname, 
+    roomName: req.params.roomName 
+  });
 });
 
 

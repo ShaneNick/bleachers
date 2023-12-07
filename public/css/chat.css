@@ -1,3 +1,17 @@
 .row2{
     background-color: aqua;
 }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 columns */
+    grid-template-rows: repeat(4, auto); /* 4 rows */
+    gap: 10px; /* Adjust the gap between grid items */
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

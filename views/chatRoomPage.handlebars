@@ -1,0 +1,29 @@
+<header class="chat-header">
+    <h1>{{roomName}}</h1>
+    <a href="/chat" class="btn">Back to Chat Rooms</a>
+</header>
+
+<main class="chat-main">
+    <div class="chat-sidebar">
+        <h3>Participants:</h3>
+        <ul id="participants">
+            <!-- Participants can be dynamically added here -->
+        </ul>
+    </div>
+    <div class="chat-messages">
+        <ul id="messages-list">
+            {{#each roomData.messages as |message|}}
+            <li class="message">
+                <p><strong>{{message.sender}}:</strong> {{message.text}}</p>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</main>
+
+<div class="chat-form-container">
+    <form id="chat-form">
+        <input id="msg" type="text" placeholder="Enter Message" required autocomplete="off">
+        <button class="btn" type="submit">Send</button>
+    </form>
+</div>

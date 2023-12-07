@@ -1,0 +1,22 @@
+<div class="container mt-5">
+    <h2>Active Chat Rooms</h2>
+    <ul class="list-group grid" id="rooms-list">
+        {{#each rooms as |room|}}
+        <li class="list-group-item">
+            <a href="/chatroom/{{room.name}}" class="stretched-link">{{room.name}}</a>
+        </li>
+        {{/each}}
+    </ul>
+
+    <div class="mt-4">
+        <form class="create-form"> <!-- Updated class here -->
+            <div class="mb-3">
+                <label for="room-name" class="form-label">Room Name:</label>
+                <input type="text" class="form-control" id="room-name" placeholder="Enter New Room Name" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Room</button>
+        </form>
+    </div>
+</div>
+
+
